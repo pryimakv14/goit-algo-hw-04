@@ -40,6 +40,7 @@ def merge_sort(arr):
 
         return merged
 
+
     mid = len(arr) // 2
     left_half = arr[:mid]
     right_half = arr[mid:]
@@ -48,9 +49,22 @@ def merge_sort(arr):
 
 
 if __name__ == '__main__':
-    lst = [random.randint(0, 1000) for _ in range(2000)]
-    time_insertion = timeit.timeit(lambda: insertion_sort(lst[:]), number=100)
-    time_merge = timeit.timeit(lambda: merge_sort(lst[:]), number=100)
-    time_timsort = timeit.timeit(lambda: sorted(lst[:]), number=100)
+    lst_small = [random.randint(0, 1000) for _ in range(1000)]
+    lst_big = [random.randint(0, 1000) for _ in range(10000)]
 
-    print(time_insertion, time_merge, time_timsort)
+    time_insertion_small = timeit.timeit(lambda: insertion_sort(lst_small[:]), number=10)
+    time_merge_small = timeit.timeit(lambda: merge_sort(lst_small[:]), number=10)
+    time_timsort_small = timeit.timeit(lambda: sorted(lst_small[:]), number=10)
+
+    time_insertion_big = timeit.timeit(lambda: insertion_sort(lst_big[:]), number=10)
+    time_merge_big = timeit.timeit(lambda: merge_sort(lst_big[:]), number=10)
+    time_timsort_big = timeit.timeit(lambda: sorted(lst_big[:]), number=10)
+
+    print("Сортування вставками - менший список: ", time_insertion_small)
+    print("Сортування вставками - більший список: ", time_insertion_big)
+
+    print("Сортування злиттям - менший список: ", time_merge_small)
+    print("Сортування злиттям - більший список: ", time_merge_big)
+
+    print("Сортування тімсорт - менший список: ", time_timsort_small)
+    print("Сортування тімсорт - більший список: ", time_timsort_big)
